@@ -1,5 +1,5 @@
-FROM node:18-alpine
-WORKDIR /app
-COPY .output .output
-EXPOSE 3000
-CMD ["node", ".output/server/index.mjs"]
+FROM nginx:latest
+
+COPY ./html /usr/share/nginx/html
+
+EXPOSE 80
