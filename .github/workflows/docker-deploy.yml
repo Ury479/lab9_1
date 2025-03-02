@@ -3,12 +3,13 @@ name: Deploy Lab9 to Server
 on:
   push:
     branches:
-      - main # 仅在 main 分支推送时触发
+      - Q1 # 仅在 Q1 分支 push 代码时触发
+
+  workflow_dispatch: # 允许手动触发 CI/CD
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -24,7 +25,6 @@ jobs:
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
-
     steps:
       - name: Deploy to Server
         uses: appleboy/ssh-action@v0.1.6
