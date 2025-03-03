@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   web:
-    image: myusername/lab9-q1-web:latest
+    image: uryy/lab9-q1-web:latest
     build: .
     ports:
       - "8080:80"
