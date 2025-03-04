@@ -1,23 +1,11 @@
+version: '3.8'
+
 services:
-  mysql:
-    image: mysql:latest  # 使用最新的 MySQL 镜像
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword  # 设置 root 账号的密码
+  web:
+    image: uryy/lab9-q1-web:latest
+    build: .
     ports:
-      - "3306:3306"  # 映射 MySQL 端口（宿主机 3306 -> 容器 3306）
+      - "8080:80"
+    restart: always
     volumes:
-      - mysql_data:/var/lib/mysql  # 数据持久化存储
-
-  phpmyadmin:
-    image: phpmyadmin:latest  # 使用最新的 phpMyAdmin 镜像
-    depends_on:
-      - mysql  # 确保 MySQL 先启动
-    environment:
-      PMA_HOST: mysql  # 连接的数据库地址
-      PMA_USER: root  # 登录 phpMyAdmin 使用的用户名
-      PMA_PASSWORD: rootpassword  # phpMyAdmin 登录的密码
-    ports:
-      - "9000:80"  # 宿主机 9000 端口映射到 phpMyAdmin 80 端口
-
-volumes:
-  mysql_data:  # 定义一个名为 mysql_data 的持久化存储卷
+      - ./html/index.html:/usr/share/nginx/html/index.html
